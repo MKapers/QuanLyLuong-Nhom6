@@ -60,4 +60,4 @@ Bài hiện tập trung vào CRUD, tính lương và đăng nhập hai quyền. 
 
 ## Quản lý công việc
 
-Bảng GitHub Projects của nhóm được dùng để tổng hợp các phần đã làm và những việc cần kiểm thử, hoàn thiện trước khi nộp.
+[GitHub Projects – Nhóm 6](https://github.com/users/MKapers/projects/2) được dùng để tổng hợp các phần đã làm và những việc cần kiểm thử, hoàn thiện trước khi nộp. Mỗi thẻ ghi người phụ trách và phạm vi công việc; các ca kiểm thử bổ sung chưa chạy được để ở cột Cần làm.
