@@ -1,0 +1,39 @@
+﻿@model Quanlyluong.Models.Bangluong
+
+@{
+    ViewData["Title"] = "Xóa bảng lương";
+}
+
+<h2>Xóa bảng lương</h2>
+
+<p>Bạn có chắc muốn xóa bảng lương này không?</p>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Nhân viên</th>
+        <td>@Model.NhanVien?.HoTen</td>
+    </tr>
+    <tr>
+        <th>Tháng / Năm</th>
+        <td>@Model.Thang/@Model.Nam</td>
+    </tr>
+    <tr>
+        <th>Thực lĩnh</th>
+        <td>@Model.ThucLinh.ToString("N0") đ</td>
+    </tr>
+</table>
+
+<form asp-action="Delete"
+      asp-route-id="@Model.Id"
+      method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit" class="btn btn-danger">
+        Xác nhận xóa
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Quay lại
+    </a>
+</form>

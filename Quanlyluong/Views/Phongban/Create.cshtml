@@ -1,0 +1,42 @@
+﻿@model Quanlyluong.Models.Phongban
+
+@{
+    ViewData["Title"] = "Thêm phòng ban";
+}
+
+<h2>Thêm phòng ban</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="TenPhong" class="form-label"></label>
+
+        <input asp-for="TenPhong" class="form-control" />
+
+        <span asp-validation-for="TenPhong"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GhiChu" class="form-label"></label>
+
+        <input asp-for="GhiChu" class="form-control" />
+
+        <span asp-validation-for="GhiChu"
+              class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Lưu
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Quay lại
+    </a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,51 @@
+﻿@model Quanlyluong.Models.Dangnhap
+
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<h2>Đăng nhập</h2>
+
+<form asp-controller="Taikhoan"
+      asp-action="DangNhap"
+      method="post"
+      style="max-width: 400px;">
+
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="TenDangNhap" class="form-label">
+            Tên đăng nhập
+        </label>
+
+        <input asp-for="TenDangNhap"
+               class="form-control"
+               autocomplete="username" />
+
+        <span asp-validation-for="TenDangNhap"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MatKhau" class="form-label">
+            Mật khẩu
+        </label>
+
+        <input asp-for="MatKhau"
+               type="password"
+               class="form-control"
+               autocomplete="current-password" />
+
+        <span asp-validation-for="MatKhau"
+              class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Đăng nhập
+    </button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

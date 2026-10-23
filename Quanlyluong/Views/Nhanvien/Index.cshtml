@@ -1,0 +1,56 @@
+﻿@model List<Quanlyluong.Models.Nhanvien>
+
+@{
+    ViewData["Title"] = "Danh sách nhân viên";
+}
+
+<a asp-action="Create" class="btn btn-primary mb-3">
+    Thêm nhân viên
+</a>
+
+<h2>Danh sách nhân viên</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Mã nhân viên</th>
+                <th>Họ tên</th>
+                <th>Phòng ban</th>
+                <th>Lương cơ bản</th>
+                <th>Phụ cấp</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaNV</td>
+                    <td>@item.HoTen</td>
+                    <td>@item.PhongBan?.TenPhong</td>
+                    <td>@item.LuongCoBan.ToString("N0") đ</td>
+                    <td>@item.PhuCap.ToString("N0") đ</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">
+                            Sửa
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
+                            Xóa
+                        </a>
+                    </td>
+                </tr>
+            }
+
+            @if (Model.Count == 0)
+            {
+                <tr>
+                    <td colspan="6" class="text-center">
+                        Chưa có nhân viên.
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

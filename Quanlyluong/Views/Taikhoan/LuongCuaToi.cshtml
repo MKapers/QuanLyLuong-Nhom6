@@ -1,0 +1,53 @@
+﻿@model List<Quanlyluong.Models.Bangluong>
+
+@{
+    ViewData["Title"] = "Lương của tôi";
+}
+
+<h2>Lương của tôi</h2>
+
+@if (Model.Count > 0)
+{
+    <p>Nhân viên: <strong>@Model[0].NhanVien?.HoTen</strong></p>
+}
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tháng / Năm</th>
+                <th>Ngày công</th>
+                <th>Lương cơ bản</th>
+                <th>Phụ cấp</th>
+                <th>Thưởng</th>
+                <th>Khấu trừ</th>
+                <th>Thực lĩnh</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Thang/@item.Nam</td>
+                    <td>@item.SoNgayCong</td>
+                    <td>@item.LuongCoBan.ToString("N0") đ</td>
+                    <td>@item.PhuCap.ToString("N0") đ</td>
+                    <td>@item.Thuong.ToString("N0") đ</td>
+                    <td>@item.KhauTru.ToString("N0") đ</td>
+                    <td>
+                        <strong>@item.ThucLinh.ToString("N0") đ</strong>
+                    </td>
+                </tr>
+            }
+
+            @if (Model.Count == 0)
+            {
+                <tr>
+                    <td colspan="7" class="text-center">
+                        Bạn chưa có bảng lương.
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

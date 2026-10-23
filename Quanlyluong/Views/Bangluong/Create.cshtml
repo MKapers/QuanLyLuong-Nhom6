@@ -1,0 +1,111 @@
+﻿@model Quanlyluong.Models.Bangluong
+
+@{
+    ViewData["Title"] = "Thêm bảng lương";
+}
+
+<h2>Thêm bảng lương</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="NhanVienId" class="form-label"></label>
+
+        <select asp-for="NhanVienId"
+                asp-items="ViewBag.NhanViens"
+                class="form-select">
+            <option value="0">-- Chọn nhân viên --</option>
+        </select>
+
+        <span asp-validation-for="NhanVienId"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Thang" class="form-label"></label>
+
+        <input asp-for="Thang"
+               type="number"
+               min="1"
+               max="12"
+               class="form-control" />
+
+        <span asp-validation-for="Thang"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Nam" class="form-label"></label>
+
+        <input asp-for="Nam"
+               type="number"
+               min="2020"
+               max="2100"
+               class="form-control" />
+
+        <span asp-validation-for="Nam"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SoNgayCong" class="form-label"></label>
+
+        <input asp-for="SoNgayCong"
+               type="number"
+               min="0"
+               max="26"
+               class="form-control" />
+
+        <span asp-validation-for="SoNgayCong"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Thuong" class="form-label"></label>
+
+        <input asp-for="Thuong"
+               asp-format="{0:0}"
+               type="number"
+               min="0"
+               max="100000000"
+               step="1"
+               class="form-control" />
+
+        <span asp-validation-for="Thuong"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="KhauTru" class="form-label"></label>
+
+        <input asp-for="KhauTru"
+               asp-format="{0:0}"
+               type="number"
+               min="0"
+               max="100000000"
+               step="1"
+               class="form-control" />
+
+        <span asp-validation-for="KhauTru"
+              class="text-danger"></span>
+    </div>
+
+    <p>
+        Thực lĩnh = Lương cơ bản / 26 × Ngày công
+        + Phụ cấp + Thưởng − Khấu trừ.
+    </p>
+
+    <button type="submit" class="btn btn-primary">
+        Tính và lưu
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Quay lại
+    </a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

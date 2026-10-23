@@ -1,0 +1,87 @@
+﻿@model Quanlyluong.Models.Nhanvien
+
+@{
+    ViewData["Title"] = "Sửa nhân viên";
+}
+
+<h2>Sửa nhân viên</h2>
+
+<form asp-action="Edit"
+      asp-route-id="@Model.Id"
+      method="post">
+
+    <input asp-for="Id" type="hidden" />
+
+    <div class="mb-3">
+        <label asp-for="MaNV" class="form-label"></label>
+
+        <input asp-for="MaNV" class="form-control" />
+
+        <span asp-validation-for="MaNV"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="HoTen" class="form-label"></label>
+
+        <input asp-for="HoTen" class="form-control" />
+
+        <span asp-validation-for="HoTen"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PhongBanId" class="form-label"></label>
+
+        <select asp-for="PhongBanId"
+                asp-items="ViewBag.PhongBans"
+                class="form-select">
+            <option value="0">-- Chọn phòng ban --</option>
+        </select>
+
+        <span asp-validation-for="PhongBanId"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="LuongCoBan" class="form-label"></label>
+
+        <input asp-for="LuongCoBan"
+               asp-format="{0:0}"
+               type="number"
+               min="1"
+               max="1000000000"
+               step="1"
+               class="form-control" />
+
+        <span asp-validation-for="LuongCoBan"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PhuCap" class="form-label"></label>
+
+        <input asp-for="PhuCap"
+               asp-format="{0:0}"
+               type="number"
+               min="0"
+               max="100000000"
+               step="1"
+               class="form-control" />
+
+        <span asp-validation-for="PhuCap"
+              class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+    Lưu thay đổi
+</button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Quay lại
+    </a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

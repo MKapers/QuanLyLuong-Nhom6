@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Quanlyluong</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Quanlyluong.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom mb-3">
+        <div class="container flex-wrap">
+            <a class="navbar-brand"
+               asp-controller="Home"
+               asp-action="Index">
+                Quản lý lương
+            </a>
+
+            <ul class="navbar-nav flex-row flex-wrap gap-3">
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-controller="Phongban"
+                           asp-action="Index">
+                            Phòng ban
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-controller="Nhanvien"
+                           asp-action="Index">
+                            Nhân viên
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-controller="Bangluong"
+                           asp-action="Index">
+                            Bảng lương
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("NhanVien"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-controller="Taikhoan"
+                           asp-action="LuongCuaToi">
+                            Lương của tôi
+                        </a>
+                    </li>
+                }
+            </ul>
+
+            <div class="d-flex align-items-center gap-2">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <span>Xin chào, @User.Identity.Name</span>
+
+                    <form asp-controller="Taikhoan"
+                          asp-action="DangXuat"
+                          method="post">
+                        <button type="submit"
+                                class="btn btn-outline-danger btn-sm">
+                            Đăng xuất
+                        </button>
+                    </form>
+                }
+                else
+                {
+                    <a asp-controller="Taikhoan"
+                       asp-action="DangNhap"
+                       class="btn btn-primary btn-sm">
+                        Đăng nhập
+                    </a>
+                }
+            </div>
+        </div>
+    </nav>
+</header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - Quanlyluong - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

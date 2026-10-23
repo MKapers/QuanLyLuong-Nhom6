@@ -1,0 +1,69 @@
+﻿@model List<Quanlyluong.Models.Bangluong>
+
+@{
+    ViewData["Title"] = "Bảng lương";
+}
+
+<h2>Bảng lương nhân viên</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">
+    Thêm bảng lương
+</a>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Mã nhân viên</th>
+                <th>Họ tên</th>
+                <th>Tháng / Năm</th>
+                <th>Ngày công</th>
+                <th>Thưởng</th>
+                <th>Khấu trừ</th>
+                <th>Thực lĩnh</th>
+<th>Thao tác</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.NhanVien?.MaNV</td>
+                    <td>@item.NhanVien?.HoTen</td>
+                    <td>@item.Thang/@item.Nam</td>
+                    <td>@item.SoNgayCong</td>
+                    <td>@item.Thuong.ToString("N0") đ</td>
+                    <td>@item.KhauTru.ToString("N0") đ</td>
+
+                    <td>
+                        <strong>
+                            @item.ThucLinh.ToString("N0") đ
+                        </strong>
+                    </td>
+<td>
+    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+        Sửa
+    </a>
+    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
+        Xóa
+    </a>
+</td>
+                </tr>
+            }
+
+            @if (Model.Count == 0)
+            {
+                <tr>
+                    <td colspan="8" class="text-center">
+                        Chưa có bảng lương.
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<p>
+    <strong>Tổng thực lĩnh:</strong>
+    @Model.Sum(b => b.ThucLinh).ToString("N0") đ
+</p>

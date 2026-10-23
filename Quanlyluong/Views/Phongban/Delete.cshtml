@@ -1,0 +1,42 @@
+﻿@model Quanlyluong.Models.Phongban
+
+@{
+    ViewData["Title"] = "Xóa phòng ban";
+}
+
+<div asp-validation-summary="ModelOnly"
+     class="text-danger"></div>
+
+<h2>Xóa phòng ban</h2>
+
+<p>Bạn có chắc muốn xóa phòng ban này không?</p>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Mã phòng</th>
+        <td>@Model.Id</td>
+    </tr>
+
+    <tr>
+        <th>Tên phòng ban</th>
+        <td>@Model.TenPhong</td>
+    </tr>
+
+    <tr>
+        <th>Ghi chú</th>
+        <td>@Model.GhiChu</td>
+    </tr>
+</table>
+
+<form asp-action="Delete"
+      asp-route-id="@Model.Id"
+      method="post">
+
+    <button type="submit" class="btn btn-danger">
+        Xác nhận xóa
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Hủy
+    </a>
+</form>
